@@ -11,5 +11,6 @@ import UIKit
 struct List {
     
     let name: String
+    let reminders: Int
     let backgroundColor: UIColor
 }
