@@ -9,10 +9,13 @@ import UIKit
 
 class NewReminderViewController: UIViewController {
     
+    var chosenList = "All"
+    
+    @IBOutlet weak var chosenListOutlet: UIButton!
     @IBOutlet weak var textField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        chosenListOutlet.setTitle(chosenList, for: .normal)
         // Do any additional setup after loading the view.
         textField.becomeFirstResponder()
     }
@@ -30,6 +33,17 @@ class NewReminderViewController: UIViewController {
     }
     
     @IBAction func listPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "goToLists", sender: self)
+        
     }
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! ChooseListViewController
+        
+        
+        
+        
+//        if let indexPath = tableView.indexPathForSelectedRow {
+//            destinationVC.selectedCategory = catergories[indexPath.row]
+//        }
+    }
 }

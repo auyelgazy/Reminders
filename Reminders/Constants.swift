@@ -6,6 +6,8 @@
 //
 
 struct K {
-    static let cellIdentifier = "ReusableCell"
+    static let listCellIdentifier = "ReusableCell"
     static let cellNibName = "ListTableViewCell"
+    
+    static let reminderCellIdentifier = "ReminderCell"
 }
