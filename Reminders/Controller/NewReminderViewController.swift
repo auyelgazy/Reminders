@@ -7,15 +7,16 @@
 
 import UIKit
 
-class NewReminderViewController: UIViewController {
+class NewReminderViewController: UIViewController, DataEnteredDelegate {
     
-    var chosenList = "All"
+    var chosenList: List?
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     @IBOutlet weak var chosenListOutlet: UIButton!
     @IBOutlet weak var textField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        chosenListOutlet.setTitle(chosenList, for: .normal)
+        
         // Do any additional setup after loading the view.
         textField.becomeFirstResponder()
     }
@@ -27,9 +28,27 @@ class NewReminderViewController: UIViewController {
     
     @IBAction func addPressed(_ sender: UIBarButtonItem) {
         
-        if let text = textField.text {
-            print(text)
+        if !textField.text!.isEmpty {
+            
+            
+            let newReminder = Reminder(context: self.context)
+            newReminder.title = textField.text!
+            newReminder.isDone = false
+            newReminder.parentList = chosenList
+//            newReminder.parentList = chosenList ?? List(context: context)
+//            newReminder.parentList?.name = chosenList?.name ?? "All"
+            newReminder.parentList?.totalReminders += 1
+            saveReminder()
         }
+    }
+    
+    func saveReminder() {
+        do {
+            try context.save()
+        } catch {
+            print("! ! ! Error occured while trying to SAVE reminders: \(error)")
+        }
+        self.dismiss(animated: true)
     }
     
     @IBAction func listPressed(_ sender: UIButton) {
@@ -37,13 +56,15 @@ class NewReminderViewController: UIViewController {
         
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationVC = segue.destination as! ChooseListViewController
+        if segue.identifier == "goToLists", let listVC = segue.destination as? ChooseListViewController  {
+            listVC.delegate = self
+        }
+    }
+    
+    func userDidChooseList(list: List?) {
         
-        
-        
-        
-//        if let indexPath = tableView.indexPathForSelectedRow {
-//            destinationVC.selectedCategory = catergories[indexPath.row]
-//        }
+        chosenList = list
+        chosenListOutlet.setTitle(chosenList?.name, for: .normal)
+        navigationController?.popToRootViewController(animated: true)
     }
 }

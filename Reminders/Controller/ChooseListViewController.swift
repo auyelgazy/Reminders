@@ -8,16 +8,16 @@
 import UIKit
 import CoreData
 
+protocol DataEnteredDelegate: AnyObject {
+    func userDidChooseList(list: List?)
+}
+
 class ChooseListViewController: UIViewController {
     
     var lists = [List]()
+    var selectedList: List?
+    weak var delegate: DataEnteredDelegate?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
-    var selectedList: String? {
-        didSet {
-            self.navigationController?.popToRootViewController(animated: true)
-        }
-    }
 
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
@@ -59,6 +59,7 @@ extension ChooseListViewController: UITableViewDataSource {
 
 extension ChooseListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedList = lists[indexPath.row].name
+        selectedList = lists[indexPath.row]
+        delegate?.userDidChooseList(list: selectedList ?? List(context: context))
     }
 }

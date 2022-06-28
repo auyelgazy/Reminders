@@ -62,7 +62,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k6i-oJ-2a1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4355" y="104"/>
+            <point key="canvasLocation" x="4606" y="104"/>
         </scene>
         <!--Reminders-->
         <scene sceneID="tne-QT-ifu">
@@ -91,7 +91,7 @@
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="LCZ-tA-ALw" kind="presentation" id="h9C-Yf-Uqw"/>
+                                    <segue destination="LCZ-tA-ALw" kind="presentation" identifier="toNewReminder" id="h9C-Yf-Uqw"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -120,7 +120,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="vuK-mD-gbG" id="rUk-H9-fP3"/>
-                        <segue destination="Pbp-eI-hIK" kind="show" identifier="goToReminders" id="02w-t5-igS"/>
+                        <segue destination="Pbp-eI-hIK" kind="show" identifier="goToReminders" id="oZa-rL-bDY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -135,24 +135,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="mG0-l4-wo7">
-                                <rect key="frame" x="20" y="56" width="374" height="115.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="mG0-l4-wo7">
+                                <rect key="frame" x="20" y="56" width="374" height="119"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="gdg-Qk-fug">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="53.5"/>
                                         <color key="backgroundColor" systemColor="systemGray3Color"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="sVF-YH-h1a"/>
-                                        </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fQB-kN-YNy">
-                                        <rect key="frame" x="0.0" y="62" width="374" height="53.5"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="1FH-ur-abf"/>
-                                        </constraints>
+                                        <rect key="frame" x="0.0" y="65.5" width="374" height="53.5"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <buttonConfiguration key="configuration" style="gray" title="List" subtitle="Chosen list" titleAlignment="leading">
                                             <fontDescription key="titleFontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="20"/>
@@ -167,10 +161,9 @@
                         <viewLayoutGuide key="safeArea" id="K84-bQ-cBV"/>
                         <color key="backgroundColor" systemColor="systemGray4Color"/>
                         <constraints>
-                            <constraint firstItem="mG0-l4-wo7" firstAttribute="leading" secondItem="91B-Z7-N8c" secondAttribute="leadingMargin" id="2l8-6I-UQc"/>
-                            <constraint firstItem="mG0-l4-wo7" firstAttribute="trailing" secondItem="91B-Z7-N8c" secondAttribute="trailingMargin" id="4SQ-1k-Vvh"/>
-                            <constraint firstItem="K84-bQ-cBV" firstAttribute="bottom" secondItem="mG0-l4-wo7" secondAttribute="bottom" constant="640" id="dU2-v7-Cy0"/>
-                            <constraint firstItem="mG0-l4-wo7" firstAttribute="top" secondItem="K84-bQ-cBV" secondAttribute="top" id="fpc-cJ-lAy"/>
+                            <constraint firstItem="mG0-l4-wo7" firstAttribute="leading" secondItem="K84-bQ-cBV" secondAttribute="leading" constant="20" id="MBL-QX-TmJ"/>
+                            <constraint firstItem="mG0-l4-wo7" firstAttribute="top" secondItem="K84-bQ-cBV" secondAttribute="top" id="aiR-5a-eSX"/>
+                            <constraint firstItem="K84-bQ-cBV" firstAttribute="trailing" secondItem="mG0-l4-wo7" secondAttribute="trailing" constant="20" id="jOM-WD-zWu"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="New Reminder" id="nie-Hb-ix1">

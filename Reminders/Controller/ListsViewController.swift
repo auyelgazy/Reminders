@@ -10,6 +10,7 @@ import CoreData
 
 class ListsViewController: UIViewController {
     
+    
     var lists = [List]()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -21,8 +22,6 @@ class ListsViewController: UIViewController {
         loadLists()
         tableView.dataSource = self
         tableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.listCellIdentifier)
-        
-        
     }
     
     @IBAction func addListPressed(_ sender: UIBarButtonItem) {
@@ -44,11 +43,11 @@ class ListsViewController: UIViewController {
             alertTextField.placeholder = "ex. Groceries..."
             textField = alertTextField
         }
-//        alert.addColorPicker(color: color) { color in
-//            // action with selected color
-//        }
-//
-//        alert.show()
+        //        alert.addColorPicker(color: color) { color in
+        //            // action with selected color
+        //        }
+        //
+        //        alert.show()
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
     }
@@ -82,25 +81,18 @@ extension ListsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let list = lists[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: K.listCellIdentifier, for: indexPath) as! ListTableViewCell
-        // MARK: dsadas
-        
-//                cell.backgroundColor = UIColor.init(named: list.color)
+        //                cell.backgroundColor = UIColor.init(named: list.color)
         cell.listTitle.text = list.name
         cell.remindersNumber.text = String(list.totalReminders)
         return cell
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        performSegue(withIdentifier: "goToReminders", sender: self)
-//    }
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        let destinationVC = segue.destination as! RemindersViewController
-//
-//        if let indexPath = tableView.indexPathForSelectedRow {
-//            destinationVC.selectedList = lists[indexPath.row]
-//        }
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "goToReminders", sender: self)
+    }
     
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destionationVC = segue.destination as! RemindersViewController
+    }
 }
 

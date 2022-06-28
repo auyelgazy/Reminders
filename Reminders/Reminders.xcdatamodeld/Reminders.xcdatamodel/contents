@@ -11,7 +11,7 @@
         <relationship name="parentList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="List" inverseName="reminders" inverseEntity="List"/>
     </entity>
     <elements>
-        <element name="List" positionX="-1809.63671875" positionY="215.3203125" width="128" height="88"/>
-        <element name="Reminder" positionX="-1611.95703125" positionY="174.55078125" width="128" height="88"/>
+        <element name="List" positionX="-1999.94921875" positionY="285.453125" width="128" height="88"/>
+        <element name="Reminder" positionX="-1718.40625" positionY="272.32421875" width="128" height="88"/>
     </elements>
 </model>
