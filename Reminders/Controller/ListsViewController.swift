@@ -13,6 +13,7 @@ class ListsViewController: UIViewController {
     
     var lists = [List]()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var currentIndex = 0
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -21,6 +22,7 @@ class ListsViewController: UIViewController {
         // Do any additional setup after loading the view.
         loadLists()
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.listCellIdentifier)
     }
     
@@ -81,18 +83,28 @@ extension ListsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let list = lists[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: K.listCellIdentifier, for: indexPath) as! ListTableViewCell
+
         //                cell.backgroundColor = UIColor.init(named: list.color)
         cell.listTitle.text = list.name
         cell.remindersNumber.text = String(list.totalReminders)
+        
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        currentIndex = indexPath.row
         performSegue(withIdentifier: "goToReminders", sender: self)
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destionationVC = segue.destination as! RemindersViewController
+        if segue.identifier == "goToReminders", let destionationVC = segue.destination as? RemindersViewController {
+            
+            
+            destionationVC.titleText = lists[currentIndex].name!
+            destionationVC.selectedList = lists[currentIndex]
+        }
     }
 }
 

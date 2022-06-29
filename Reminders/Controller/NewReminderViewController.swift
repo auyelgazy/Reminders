@@ -62,7 +62,6 @@ class NewReminderViewController: UIViewController, DataEnteredDelegate {
     }
     
     func userDidChooseList(list: List?) {
-        
         chosenList = list
         chosenListOutlet.setTitle(chosenList?.name, for: .normal)
         navigationController?.popToRootViewController(animated: true)
